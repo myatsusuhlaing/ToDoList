@@ -18,7 +18,10 @@ function TodoList(){
     newNotes[index].completed = !newNotes[index].completed;
     setNote(newNotes);
   };
-
+  const deleteBtn =() =>{
+    const newNotes = notes.filter((note) => !note.completed)
+    setNote(newNotes);
+  };
   return(
   <>
     <div className="toTask">
@@ -43,6 +46,7 @@ function TodoList(){
             />{note.label}
             </li>
           )}
+          <button onClick={deleteBtn}>Delete All</button>
         </ul>
     </div>
     {/* <Test/> */}
