@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import './App.css';
+import Test from './test';
 
 function TodoList(){
   const [notes,setNote] = useState([])
   const [addlist,setAddList]  = useState("")
+
   const handleSubmit =(event)=> {
     event.preventDefault();
-    setNote([...notes,addlist]);
-  }
+    if (!addlist.trim())return;
+    setNote([...notes,{label:addlist,completed:false}]);
+    setAddList('');
+  };
+
+  const toggleNew = (index) => {
+    const newNotes = [...notes];
+    newNotes[index].completed = !newNotes[index].completed;
+    setNote(newNotes);
+  };
+
   return(
   <>
     <div className="toTask">
@@ -22,13 +33,19 @@ function TodoList(){
     </div>
     <div className='checkList'>
         <ul>
-          {notes.map((note) =>
-            <li>
-            <input  type='checkbox' name='checkbox'/>{note}
+          {notes.map((note,index) =>
+            <li key={index} 
+            style={{textDecoration: note.completed ? "line-through" : "none"}}>
+            <input 
+              type='checkbox' 
+              checked ={note.completed}
+              onChange={()=>toggleNew(index)}
+            />{note.label}
             </li>
           )}
         </ul>
     </div>
+    {/* <Test/> */}
   </> 
   )
 }
