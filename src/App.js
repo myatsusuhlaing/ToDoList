@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import './App.css';
-import Test from './test';
+import Testagain from './testagain';
 
-function TodoList(){
-  const [notes,setNote] = useState([])
-  const [addlist,setAddList]  = useState("")
+function TodoList(){            
+  const [notes,setNote] = useState([])                     //for checkbox lists
+  const [addlist,setAddList]  = useState("")              //For input typing results
 
   const handleSubmit =(event)=> {
-    event.preventDefault();
-    if (!addlist.trim())return;
-    setNote([...notes,{label:addlist,completed:false}]);
-    setAddList('');
+    // event.preventDefault();
+    if (!addlist.trim())return;                          //No tying in input,also click don't show list icon
+    setNote([...notes,{label:addlist,completed:false}]); //notes = show answers clcik at times , addList = show typing words at checkbox lists
+    setAddList('');                                     //After add click btn,clear perivous words in input
   };
 
   const toggleNew = (index) => {
     const newNotes = [...notes];
     newNotes[index].completed = !newNotes[index].completed;
-    setNote(newNotes);
+    setNote(newNotes);                                      //for checkbox click show line-through
   };
   const deleteBtn =() =>{
     const newNotes = notes.filter((note) => !note.completed)
-    setNote(newNotes);
+    setNote(newNotes);                                      //for delete all checkbox
   };
   return(
   <>
@@ -49,7 +49,7 @@ function TodoList(){
           <button onClick={deleteBtn}>Delete All</button>
         </ul>
     </div>
-    {/* <Test/> */}
+    <Testagain/>
   </> 
   )
 }
