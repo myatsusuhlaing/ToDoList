@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Testagain from './testagain';
+// import Testagain from './testagain';
 
 function TodoList(){            
   const [notes,setNote] = useState([])                     //for checkbox lists
@@ -8,7 +8,7 @@ function TodoList(){
 
   const handleSubmit =(event)=> {
     // event.preventDefault();
-    if (!addlist.trim())return;                          //No tying in input,also click don't show list icon
+    if (!addlist.trim())return;                          //No click and tying in input, don't show list icon 
     setNote([...notes,{label:addlist,completed:false}]); //notes = show answers clcik at times , addList = show typing words at checkbox lists
     setAddList('');                                     //After add click btn,clear perivous words in input
   };
@@ -49,7 +49,7 @@ function TodoList(){
           <button onClick={deleteBtn}>Delete All</button>
         </ul>
     </div>
-    <Testagain/>
+    {/* <Testagain/> */}
   </> 
   )
 }
